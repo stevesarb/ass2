@@ -5,6 +5,7 @@ int main() {
     int init_choice = 0;
     char* file_path = NULL;
     struct Movie* head = NULL;
+    struct Movies_By_Distinct_Year* by_year_head = NULL;
 
     do {
         init_choice = get_initial_choice();
@@ -16,6 +17,7 @@ int main() {
         printf("Now processing the file: %s\n", file_path);
         head = process_file(file_path);
 
+        by_year_head = organize_movies_by_year(head);
     
         free_movie_list(head);
     }

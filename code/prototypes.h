@@ -9,6 +9,12 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+// for displaying top rated movie for each year
+struct Movies_By_Distinct_Year {
+    struct Movie* mov;
+    struct Movies_By_Distinct_Year* next_year;
+};
+
 struct Language {
     char* lang;
     struct Language* next;
@@ -20,6 +26,7 @@ struct Movie {
     struct Language* langs_head;
     double rating;
     struct Movie* next;
+    struct Movie* same_year_next;
 };
 
 // process file functions
@@ -38,6 +45,12 @@ int check_file_path(char*);
 // search for files
 char* find_largest_file();
 char* find_smallest_file();
+
+// output movies by year functions
+struct Movies_By_Distinct_Year* organize_movies_by_year(struct Movie*);
+void check_for_same_year(struct Movie*, struct Movies_By_Distinct_Year*);
+void add_same_year_movie(struct Movie*, struct Movie*);
+void print_same_year_movies(struct Movie*);
 
 // free memory functions
 void free_movie_list(struct Movie*);

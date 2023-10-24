@@ -64,6 +64,7 @@ struct Movie* create_movie(char* curr_line) {
     struct Movie* curr_movie = malloc(sizeof(struct Movie));
 
     curr_movie->next = NULL;
+    curr_movie->same_year_next = NULL;
 
     // for use with strtok_r
     char* save_ptr = NULL;

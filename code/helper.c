@@ -23,7 +23,7 @@ char* select_files_to_process() {
         }
         file = fopen(file_path, "r");
         if (file == NULL)
-            printf("Could not locate or open the file %s\n", file_path);
+            printf("Could not locate or open the file: %s\n", file_path);
     }
     while (file == NULL);
 
@@ -105,15 +105,20 @@ int check_file_path(char* file_path) {
 
     int len = strlen(file_path);
 
+    // the shortest possible file name would be movies_.csv, which is 11 characters long
     if (len < 11)
         return 0;
 
+    // only evaluate files whose names are at least 4 characters long
     if (len >= 4)
         last_4_chars = &file_path[len - 4];
     else 
         return 0;
 
+    // compare the first 7 characters of the file name (should be: movies_)
     int prefix_ret = strncmp(file_path, file_prefix, 7);
+    
+    // compare the last 4 characters of the file name, (should be: .csv)
     int suffix_ret = strcmp(last_4_chars, file_suffix);
 
     if (prefix_ret == 0 && suffix_ret == 0)
