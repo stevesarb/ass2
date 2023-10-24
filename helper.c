@@ -26,7 +26,7 @@ void select_files_to_process() {
     }
     while (file == NULL);
 
-    printf("Now processing the file %s\n", file_path);
+    printf("Now processing the file: %s\n", file_path);
 }
 
 int get_initial_choice() {
@@ -98,10 +98,22 @@ char* get_file_path() {
 int check_file_path(char* file_path) {
     char* file_prefix = "movies_";
     char* file_suffix = ".csv";
+    char* last_4_chars = NULL;
+
+    int len = strlen(file_path);
+
+    if (len < 11)
+        return 0;
+
+    if (len >= 4)
+        last_4_chars = &file_path[len - 4];
+    else 
+        return 0;
 
     int prefix_ret = strncmp(file_path, file_prefix, 7);
+    int suffix_ret = strcmp(last_4_chars, file_suffix);
 
-    if (prefix_ret == 0)
+    if (prefix_ret == 0 && suffix_ret == 0)
         return 1;
     return 0;
 }
