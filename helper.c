@@ -12,6 +12,7 @@ void select_files_to_process() {
                 file_path = find_largest_file();
                 break;
             case 2:
+                file_path = find_smallest_file();
                 break;
             case 3:
                 file_path = get_file_path();
@@ -19,6 +20,9 @@ void select_files_to_process() {
             default:
                 break;
         }
+        file = fopen(file_path, "r");
+        if (file == NULL)
+            printf("Could not locate or open the file %s\n", file_path);
     }
     while (file == NULL);
 
@@ -89,4 +93,15 @@ char* get_file_path() {
     free(line);
 
     return file_path;
+}
+
+int check_file_path(char* file_path) {
+    char* file_prefix = "movies_";
+    char* file_suffix = ".csv";
+
+    int prefix_ret = strncmp(file_path, file_prefix, 7);
+
+    if (prefix_ret == 0)
+        return 1;
+    return 0;
 }
