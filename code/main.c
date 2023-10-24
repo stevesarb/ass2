@@ -2,6 +2,7 @@
 
 
 int main() {
+    srand(time(0));
     int init_choice = 0;
     char* file_path = NULL;
     struct Movie* head = NULL;
@@ -18,6 +19,7 @@ int main() {
         head = process_file(file_path);
 
         by_year_head = organize_movies_by_year(head);
+        output_movies(by_year_head);
     
         free_movie_list(head);
     }

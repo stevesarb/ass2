@@ -15,10 +15,10 @@ struct Movies_By_Distinct_Year* organize_movies_by_year(struct Movie* mov_head) 
     }
 
     // print Movies by distinct year list
-    while (curr_distinct != NULL) {
-        print_same_year_movies(curr_distinct->mov);
-        curr_distinct = curr_distinct->next_year;
-    }
+    // while (curr_distinct != NULL) {
+    //     print_same_year_movies(curr_distinct->mov);
+    //     curr_distinct = curr_distinct->next_year;
+    // }
 
     // free movies by distinct year list
     // free_distinct_year_list(head);
@@ -70,4 +70,26 @@ void add_same_year_movie(struct Movie* curr, struct Movie* mov) {
     else {
         add_same_year_movie(curr, mov->same_year_next);
     }
+}
+
+void output_movies(struct Movies_By_Distinct_Year* head) {
+    // create random number in range 0-99999 and append it to string
+    char dir_name[24];
+    memset(dir_name, '\0', 24);
+    strcat(dir_name, "./sarbers.movies.");
+    char rand_num_str[7];
+    memset(rand_num_str, '\0', 7); 
+    int rand_num = rand() % 1000000;
+    sprintf(rand_num_str, "%d", rand_num);
+    strcat(dir_name, rand_num_str);
+
+    // make directory and set perms to rwxr-x---
+    mkdir(dir_name, 0750);
+
+    // for each year, create a new file and add movies from that year to it
+    char file_path[33];
+    memset(file_path, '\0', 33);
+    strcat(file_path, dir_name);
+    strcat(file_path, "/0000.txt");
+    int file_descriptor = open(file_path, O_WRONLY | O_CREAT, 0640);
 }
