@@ -18,9 +18,9 @@ int main() {
         printf("Now processing the file: %s\n", file_path);
         head = process_file(file_path);
 
-        by_year_head = organize_movies_by_year(head);
-        output_movies(by_year_head);
-        // output_movies(head);
+        // by_year_head = organize_movies_by_year(head);
+        // output_movies(by_year_head);
+        output_movies(head);
     
         free_movie_list(head);
     }
