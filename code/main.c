@@ -20,6 +20,7 @@ int main() {
 
         by_year_head = organize_movies_by_year(head);
         output_movies(by_year_head);
+        // output_movies(head);
     
         free_movie_list(head);
     }

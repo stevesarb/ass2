@@ -54,6 +54,10 @@ void check_for_same_year(struct Movie*, struct Movies_By_Distinct_Year*);
 void add_same_year_movie(struct Movie*, struct Movie*);
 void print_same_year_movies(struct Movie*);
 void output_movies(struct Movies_By_Distinct_Year*);
+char* make_dir_name();
+char* make_file_name(char*, int);
+void create_files(struct Movies_By_Distinct_Year*, char*);
+void write_movies_to_file(int, struct Movie*);
 
 // free memory functions
 void free_movie_list(struct Movie*);
