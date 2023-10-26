@@ -16,3 +16,10 @@ void free_languages(struct Language* node) {
     free(node->lang);
     free(node);
 }
+
+void free_distinct_year_list(struct Movies_By_Distinct_Year* node) {
+    if (node->next_year != NULL) {
+        free_distinct_year_list(node->next_year);
+    }
+    free(node);
+}

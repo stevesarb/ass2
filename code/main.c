@@ -18,11 +18,15 @@ int main() {
         printf("Now processing the file: %s\n", file_path);
         head = process_file(file_path);
 
-        // by_year_head = organize_movies_by_year(head);
-        // output_movies(by_year_head);
-        output_movies(head);
+        by_year_head = organize_movies_by_year(head);
+        output_movies(by_year_head);
     
+        free(file_path);
+        file_path = NULL;
         free_movie_list(head);
+        head = NULL;
+        free_distinct_year_list(by_year_head);
+        by_year_head = NULL;
     }
     while (init_choice == 1);
 

@@ -21,6 +21,7 @@ char* select_files_to_process() {
             default:
                 break;
         }
+        // open the file to see if the file path is valid / file exists
         file = fopen(file_path, "r");
         if (file == NULL)
             printf("Could not locate or open the file: %s\n", file_path);
@@ -47,7 +48,7 @@ int get_initial_choice() {
         line_size = getline(&line, &len, stdin);
         choice = atoi(line);
         if (choice != 1 && choice != 2) {
-            printf("Invalid input, try again:\n");
+            printf("Invalid input, try again.\n");
         }
     }
     while (choice != 1 && choice != 2);
@@ -73,7 +74,7 @@ int get_file_choice() {
         line_size = getline(&line, &len, stdin);
         choice = atoi(line);
         if (choice < 1 || choice > 3) {
-            printf("Invalid input, try again:\n");
+            printf("Invalid input, try again.\n");
         }
     }
     while (choice < 1 || choice > 3);
